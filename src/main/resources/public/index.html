@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Astrology web service</title>
+<meta name="description"
+	content="A simple webservice allowing consumers to get planets and cusps positions. The AstroAPI uses Swiss Ephemeris.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	<h1>Astrology web service</h1>
+	<p>
+		The AstroWebService is a simple webservice allowing consumers to get
+		planets and cusps positions. The AstroAPI uses <a
+			href="http://www.astro.com/swisseph/swephinfo_e.htm">the Swiss
+			Ephemeris</a>.
+	</p>
+	
+	
+	<h2>API documentation</h2>
+	<ul>
+		<li><a href="http://docs.astrologyapi.apiary.io/#">AstrologyAPI</a></li>
+	</ul>
+
+
+	<h2>Demo</h2>
+
+<p>10. 6. 2012 16:00, geocentric, tropical</p>
+<pre>
+{ 
+      "event": "20120610160000", 
+      "planets": ["Sun", "Moon"],           
+}
+</pre>
+<pre id="demo1"></pre>
+<button id="example1">Send</button>
+
+<script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script>
+	var context = "AstrologyWebService";
+	$("#example1").click(function() {
+		$.post( "/" + context + "/planets", 
+				JSON.stringify({ 
+				      "event": "20120610160000", 
+				      "planets": ["Sun", "Moon"],           
+				}), 
+				function( data ) {			  					  	
+			  		$( "#demo1" ).html( "Data Loaded: " + JSON.stringify(data, null, 2) );			  		
+				});
+	});
+</script>
+
+</body>
+</html>

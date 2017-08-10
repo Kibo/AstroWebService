@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cz.kibo.astrology</groupId>
+  <artifactId>AstrologyWebService</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>AstrologyWebService</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+   </properties>
+    
+  <dependencies>
+		 <dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-core</artifactId>
+		    <version>2.6.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>cz.kibo.api</groupId>
+		    <artifactId>astrologyAPI</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-simple</artifactId>
+		  <version>1.7.7</version>
+		</dependency>
+		<dependency>
+	    	<groupId>org.json</groupId>
+	    	<artifactId>json</artifactId>
+	    	<version>20170516</version>
+	    	<scope>compile</scope>
+	    </dependency> 
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>      
+	      <version>4.12</version>
+	      <scope>test</scope>
+	    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>AstrologyWebService</finalName>        
+    <plugins>  		  		
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <version>3.1.0</version>	       
+	      </plugin> 		
+  	</plugins>    
+  </build>
+  
+</project>
