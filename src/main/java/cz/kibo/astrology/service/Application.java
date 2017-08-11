@@ -2,8 +2,11 @@ package cz.kibo.astrology.service;
 
 import static spark.Spark.*;
 
+import java.time.format.DateTimeFormatter;
+
 import cz.kibo.api.astrology.builder.CuspBuilder;
 import cz.kibo.api.astrology.builder.PlanetBuilder;
+import cz.kibo.api.astrology.builder.TransitBuilder;
 import cz.kibo.api.astrology.domain.Cusp;
 import cz.kibo.api.astrology.domain.Planet;
 import cz.kibo.astrology.service.exception.ValidationException;
@@ -100,8 +103,49 @@ public class Application implements SparkApplication {
         // Send transit ephemeris
         post("/transit", (req, res) -> {
         	
-        	res.type("application/json");
-            return "{\"transit\":\"TODO\"}";
+        	try {
+        		TransitRequest transitRequest = new TransitRequest( req.body() );
+        		
+        		if( transitRequest.hasError() ) { 
+            		throw new ValidationException( transitRequest.errors() );
+            	}
+        		
+        		TransitBuilder builder = new TransitBuilder(  transitRequest.getEvent() );
+        		builder.planet( transitRequest.getPlanet());
+        		
+        		if( transitRequest.getToPlanet() != null) {
+        			builder.toPlanet( transitRequest.getToPlanet());
+        		}
+        		
+        		if( transitRequest.getToPoint() != null) {
+        			builder.toPoint( transitRequest.getToPoint());
+        		}
+        		        	
+        		builder.aspect( transitRequest.getAspect());
+        		        		
+        		if( transitRequest.getCoordinates() != null) {
+    				builder.topo(
+    						transitRequest.getCoordinates().getLongitude(), 
+    						transitRequest.getCoordinates().getLatitude(), 
+    						transitRequest.getCoordinates().getGeoalt());
+    			}
+        		
+        		if( transitRequest.getZodiac() != null) {    				
+        			builder.zodiac( transitRequest.getZodiac() );    				
+    			}
+        		        		        		        		        		        		      
+        		res.type("application/json");        		
+        		return "{\"transit\":\"" + builder.build().getDate().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + "\"}";
+        		
+        	}catch( org.json.JSONException e) {
+        		throw new ValidationException(e.getMessage());
+        		
+        	}catch(java.lang.IllegalArgumentException e) {
+        		throw new ValidationException( e.getMessage() );
+        	
+        	} catch(java.time.format.DateTimeParseException e) {
+        		throw new ValidationException( e.getMessage() );
+        	} 
         });
                        
         
