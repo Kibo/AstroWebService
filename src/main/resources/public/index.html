@@ -36,14 +36,11 @@
 <pre id="demo1"></pre>
 <button id="example1">Send</button>
 
-<script
-  src="http://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	var context = "AstrologyWebService";
 	$("#example1").click(function() {
-		$.post( "/" + context + "/planets", 
+		$.post( "/planets", 
 				JSON.stringify({ 
 				      "event": "20120610160000", 
 				      "planets": ["Sun", "Moon"],           
