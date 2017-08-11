@@ -2,7 +2,9 @@ package cz.kibo.astrology.service;
 
 import static spark.Spark.*;
 
+import cz.kibo.api.astrology.builder.CuspBuilder;
 import cz.kibo.api.astrology.builder.PlanetBuilder;
+import cz.kibo.api.astrology.domain.Cusp;
 import cz.kibo.api.astrology.domain.Planet;
 import cz.kibo.astrology.service.exception.ValidationException;
 import spark.servlet.SparkApplication;
@@ -45,20 +47,54 @@ public class Application implements SparkApplication {
         		
         	
         	}catch( org.json.JSONException e) {
-        		//throw new ValidationException(e.getMessage());
-        		throw new ValidationException( req.body().toString() );
-
-
+        		throw new ValidationException(e.getMessage());        		
+        		
         	}catch(java.lang.IllegalArgumentException e) {
         		throw new ValidationException( e.getMessage() );
-        	}        	
+        	
+        	} catch(java.time.format.DateTimeParseException e) {
+        		throw new ValidationException( e.getMessage() );
+        	}       	
         });
 
         // Send cusps ephemeris
         post("/cusps", (req, res) -> {
         	
-        	res.type("application/json");
-            return "{\"cusps\":\"TODO\"}";
+        	try {
+        		CuspRequest cuspRequest = new CuspRequest( req.body() );
+        		
+        		if( cuspRequest.hasError() ) { 
+            		throw new ValidationException( cuspRequest.errors() );
+            	}
+        		
+        		CuspBuilder builder = new CuspBuilder(  cuspRequest.getEvent() );
+        		builder.houses( cuspRequest.getHouses() );
+        		
+        		if( cuspRequest.getCoordinates() != null) {
+    				builder.topo(
+    						cuspRequest.getCoordinates().getLongitude(), 
+    						cuspRequest.getCoordinates().getLatitude(), 
+    						cuspRequest.getCoordinates().getGeoalt());
+    			}
+        		
+        		if( cuspRequest.getZodiac() != null) {    				
+        			builder.zodiac( cuspRequest.getZodiac() );    				
+    			}
+        		
+        		Cusp cuspEphemeris = builder.build();
+        		        		        	
+        		res.type("application/json");
+        		return cuspEphemeris.toJSON(); 
+        		
+        	}catch( org.json.JSONException e) {
+        		throw new ValidationException(e.getMessage());
+        		
+        	}catch(java.lang.IllegalArgumentException e) {
+        		throw new ValidationException( e.getMessage() );
+        	
+        	} catch(java.time.format.DateTimeParseException e) {
+        		throw new ValidationException( e.getMessage() );
+        	}     	        	        	
         });
         
         // Send transit ephemeris

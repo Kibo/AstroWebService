@@ -24,6 +24,7 @@ Tropical, Sidereal
 
 ### Install
 - mvn package
+- Created War package deploy to your Java container (Jetty, Tomcat, Glasfish, ...)
 
 ## License
 GNU public version 3

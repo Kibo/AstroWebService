@@ -58,6 +58,39 @@ public class PlanetTest {
 	}
 	
 	@Test
+	public void invalidEventFormat(){
+		String reguestJSON = "{\"event\":\"20B207A016C000\", \"planets\":[\"Sun\"]}";
+		
+		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"error\":\"Text '20B207A016C000' could not be parsed at index 0\"}", res.getBody());	
+	}
+	
+	@Test
+	public void invalidTopoFormat(){
+		String reguestJSON = "{\"event\":\"20120710160000\", \"planets\":[\"Sun\"], \"topo\":['a', 'b', 123]}";
+		
+		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"error\":\"'topo' parse error.\"}", res.getBody());	
+	}
+	
+	@Test
+	public void badTopoFormat(){
+		String reguestJSON = "{\"event\":\"20120710160000\", \"planets\":[\"Sun\"], \"topo\":[123.123]}";
+		
+		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"error\":\"Property topo is not in the correct format: [longitude, latitude, geoalt].\"}", res.getBody());	
+	}
+	
+	@Test
     public void planetsGeocentricTropical(){
 		
 		String reguestJSON = "{\"planets\":[\"Sun\", \"Moon\", \"Jupiter\"], \"event\":\"20120710160000\"}";

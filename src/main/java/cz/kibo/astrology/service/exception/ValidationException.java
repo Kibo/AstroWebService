@@ -1,6 +1,6 @@
 package cz.kibo.astrology.service.exception;
 
-public class ValidationException extends Exception{
+public class ValidationException extends RuntimeException{
 		
 	private static final long serialVersionUID = 1L;
 
