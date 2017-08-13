@@ -10,14 +10,23 @@ import cz.kibo.api.astrology.builder.TransitBuilder;
 import cz.kibo.api.astrology.domain.Cusp;
 import cz.kibo.api.astrology.domain.Planet;
 import cz.kibo.astrology.service.exception.ValidationException;
-import spark.servlet.SparkApplication;
 
-public class Application implements SparkApplication {
+public class API {
 	
-    @Override
-    public void init() {
-    	
-    	staticFiles.location("/public");
+	private static final String API_CONTEXT = "/api/v1";
+	
+	public API() {     
+        setupEndpoints();
+    }
+
+	public void setupEndpoints() {
+		
+		
+		// For test
+    	get("/status", (req, res) -> {
+    		res.type("application/json");          
+            return "{\"status\":\"running\"}"; 
+    	});
     	
         // Send planet ephemeris
         post("/planets", (req, res) -> {
@@ -147,8 +156,7 @@ public class Application implements SparkApplication {
         		throw new ValidationException( e.getMessage() );
         	} 
         });
-                       
-        
+                               
         exception(ValidationException.class, (exception, req, res) -> {
         	res.status(200);
         	res.type("application/json");        	
@@ -167,6 +175,6 @@ public class Application implements SparkApplication {
         	res.status(500);
             res.type("application/json");
             return "{\"message\":\"500 - Server Error\"}";
-        });
-    }    	
+        });			
+	}
 }

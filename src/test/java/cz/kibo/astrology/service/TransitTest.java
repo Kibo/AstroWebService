@@ -12,9 +12,8 @@ public class TransitTest {
 	
 	@BeforeClass
 	public static void beforeClass() {
-		
-		Application a = new Application();
-		a.init();
+		API newRoutes = new API();
+        newRoutes.setupEndpoints();
 		
 		Spark.awaitInitialization();
 	}

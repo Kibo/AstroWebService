@@ -11,10 +11,9 @@ import static junit.framework.TestCase.assertEquals;
 public class PlanetTest {
 		
 	@BeforeClass
-	public static void beforeClass() {
-		
-		Application a = new Application();
-		a.init();
+	public static void beforeClass() {				
+		API newRoutes = new API();
+        newRoutes.setupEndpoints();
 		
 		Spark.awaitInitialization();
 	}
