@@ -25,6 +25,7 @@ Tropical, Sidereal
 ### Prerequisites
 - Java 8
 - Maven 3	
+- [astrologyAPI](https://github.com/Kibo/AstroAPI) in your local Maven repository
 
 To see the application in action, run the cz.kibo.astrology.service.Bootstrap program using your IDE.
 
