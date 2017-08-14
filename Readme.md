@@ -41,7 +41,7 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 
 **openshift**
 1. mvn clean package -Popenshift
-2. Deploy to teh OpenShift_v3 WildFly container
+2. Deploy to the OpenShift_v3 WildFly container
 
 ## License
 GNU public version 3
