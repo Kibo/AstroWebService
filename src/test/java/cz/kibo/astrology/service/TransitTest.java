@@ -27,7 +27,7 @@ public class TransitTest {
 	public void corruptedJSON(){
 		String reguestJSON = "}";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -38,7 +38,7 @@ public class TransitTest {
 	public void emptyParams(){
 		String reguestJSON = "{\"event\":\"20120710160000\"}";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -49,7 +49,7 @@ public class TransitTest {
 	public void emptyPlanet(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"aspect\":120.0, \"toPlanet\":\"Moon\" }";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -60,7 +60,7 @@ public class TransitTest {
 	public void emptyToPlanetAndToPoint(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\" }";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -71,7 +71,7 @@ public class TransitTest {
 	public void setToPlanetAndToPoint(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPlanet\":\"Moon\", \"toPoint\":120.0 }";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -82,7 +82,7 @@ public class TransitTest {
 	public void reguestToPlanet(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPlanet\":\"Moon\" }";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -93,7 +93,7 @@ public class TransitTest {
 	public void reguestToPoint(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 120.0 }";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -104,7 +104,7 @@ public class TransitTest {
 	public void reguestToPointTopo(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 120.0, \"topo\":[48.8559107, 16.0542676, 286]}";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -115,7 +115,7 @@ public class TransitTest {
 	public void reguestToPointSidereal(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 120.0, \"zodiac\":\"Krishnamurti\"}";
 		
-		URLResponse res = new URLResponse("POST", "/transit", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		

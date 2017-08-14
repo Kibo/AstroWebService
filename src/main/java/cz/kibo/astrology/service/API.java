@@ -13,7 +13,7 @@ import cz.kibo.astrology.service.exception.ValidationException;
 
 public class API {
 	
-	private static final String API_CONTEXT = "/api/v1";
+	public static final String API_CONTEXT = "/api/v1";
 	
 	public API() {     
         setupEndpoints();
@@ -29,7 +29,7 @@ public class API {
     	});
     	
         // Send planet ephemeris
-        post("/planets", (req, res) -> {
+        post(API_CONTEXT + "/planets", (req, res) -> {
         	
         	try {
         		PlanetRequest planetRequest = new PlanetRequest( req.body() );
@@ -70,7 +70,7 @@ public class API {
         });
 
         // Send cusps ephemeris
-        post("/cusps", (req, res) -> {
+        post(API_CONTEXT +"/cusps", (req, res) -> {
         	
         	try {
         		CuspRequest cuspRequest = new CuspRequest( req.body() );
@@ -110,7 +110,7 @@ public class API {
         });
         
         // Send transit ephemeris
-        post("/transit", (req, res) -> {
+        post(API_CONTEXT +"/transit", (req, res) -> {
         	
         	try {
         		TransitRequest transitRequest = new TransitRequest( req.body() );

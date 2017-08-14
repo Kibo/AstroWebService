@@ -27,7 +27,7 @@ public class PlanetTest {
 	public void corruptedJSON(){
 		String reguestJSON = "}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -38,7 +38,7 @@ public class PlanetTest {
 	public void emptyJSON(){
 		String reguestJSON = "{}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -49,7 +49,7 @@ public class PlanetTest {
 	public void invalidJSON(){
 		String reguestJSON = "{\"event\":\"20120710160000\"}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -60,7 +60,7 @@ public class PlanetTest {
 	public void invalidEventFormat(){
 		String reguestJSON = "{\"event\":\"20B207A016C000\", \"planets\":[\"Sun\"]}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -71,7 +71,7 @@ public class PlanetTest {
 	public void invalidTopoFormat(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planets\":[\"Sun\"], \"topo\":['a', 'b', 123]}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -82,7 +82,7 @@ public class PlanetTest {
 	public void badTopoFormat(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planets\":[\"Sun\"], \"topo\":[123.123]}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -94,7 +94,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Sun\", \"Moon\", \"Jupiter\"], \"event\":\"20120710160000\"}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -106,7 +106,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Sun\"],\"event\":\"20120710160000\", \"topo\":[48.8559107, 16.0542676, 286] }";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -118,7 +118,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Sun\"], \"event\":\"20120710160000\",\"zodiac\":\"Krishnamurti\" }";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -130,7 +130,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Sun\"], \"event\":\"20120710160000\",\"zodiac\":\"Krishnamurti\", \"topo\":[48.8559107, 16.0542676, 286] }";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -142,7 +142,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Sun\"], \"event\":\"20120710160000\",\"zodiac\":\"Krishnamurti123\", \"topo\":[48.8559107, 16.0542676, 286] }";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -154,7 +154,7 @@ public class PlanetTest {
 		
 		String reguestJSON = "{\"planets\":[\"Suno\"], \"event\":\"20120710160000\"}";
 		
-		URLResponse res = new URLResponse("POST", "/planets", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		

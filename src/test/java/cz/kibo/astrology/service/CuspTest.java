@@ -27,7 +27,7 @@ public class CuspTest {
 	public void corruptedJSON(){
 		String reguestJSON = "}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 		
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -38,7 +38,7 @@ public class CuspTest {
     public void cuspsEmptyTopo(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"houses\":\"Placidus\"}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -49,7 +49,7 @@ public class CuspTest {
     public void cuspsEmptyHouses(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"topo\":[1.2,2.3,3.3]}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -60,7 +60,7 @@ public class CuspTest {
     public void cuspsIncorrectHouses(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"topo\":[1.2,2.3,3.3], \"houses\":\"Pla\"}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -71,7 +71,7 @@ public class CuspTest {
     public void cuspsRequest(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"topo\":[1.2,2.3,3.3], \"houses\":\"Placidus\"}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -82,7 +82,7 @@ public class CuspTest {
     public void cuspsRequestSidereal(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"topo\":[1.2,2.3,3.3], \"houses\":\"Placidus\", \"zodiac\":\"Krishnamurti\"}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
@@ -93,7 +93,7 @@ public class CuspTest {
     public void cuspsRequestBadSidereal(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"topo\":[1.2,2.3,3.3], \"houses\":\"Placidus\", \"zodiac\":\"Krishnamurto\"}";
 		
-		URLResponse res = new URLResponse("POST", "/cusps", reguestJSON);
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
 					
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		

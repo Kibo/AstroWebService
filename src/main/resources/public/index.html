@@ -17,8 +17,7 @@
 			href="http://www.astro.com/swisseph/swephinfo_e.htm">the Swiss
 			Ephemeris</a>.
 	</p>
-	
-	
+		
 	<h2>API documentation</h2>
 	<ul>
 		<li><a href="http://docs.astrologyapi.apiary.io/#">AstrologyAPI</a></li>
@@ -38,9 +37,9 @@
 
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-	var context = "AstrologyWebService";
+	var context = "/api/v1";
 	$("#example1").click(function() {
-		$.post( "/planets", 
+		$.post( context + "/planets", 
 				JSON.stringify({ 
 				      "event": "20120610160000", 
 				      "planets": ["Sun", "Moon"],           
