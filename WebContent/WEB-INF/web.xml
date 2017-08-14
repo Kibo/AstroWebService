@@ -9,7 +9,7 @@
 	    <filter-class>spark.servlet.SparkFilter</filter-class>
 	    <init-param>
 	      <param-name>applicationClass</param-name>
-	      <param-value>cz.kibo.astrology.service.Application</param-value>
+	      <param-value>cz.kibo.astrology.service.Bootstrap</param-value>
 	    </init-param>
 	</filter>
 	<filter-mapping>
