@@ -26,7 +26,19 @@
 			  <configuration>
 			    <forkMode>always</forkMode> 
 			  </configuration>
-			</plugin>	      	      	        	     
+			</plugin>			
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-war-plugin</artifactId>
+		        <version>3.1.0</version>
+		        <configuration>
+                	<failOnMissingWebXml>true</failOnMissingWebXml>
+                	<webXml>${basedir}/WebContent/WEB-INF/web.xml</webXml>
+    				<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
+    				<outputDirectory>target</outputDirectory>
+              		<warName>ROOT</warName>
+            	</configuration>	       
+		      </plugin>				      	      	        	    
   		</plugins>    
   </build>
        
@@ -119,17 +131,7 @@
   		<id>war</id>
   		<properties>
      		<packaging.type>war</packaging.type>     	
-     	</properties>
-     	
-     	<build>	        
-	     	<plugins>
-	     	<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-war-plugin</artifactId>
-		        <version>3.1.0</version>	       
-		      </plugin>
-		    </plugins> 
-	    </build>	    	    
+     	</properties>     		    	   
   	</profile>
     	 
     <profile>       
@@ -145,22 +147,7 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-     </dependencies>
-              
-     <build>        
-        <plugins>
-          <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <outputDirectory>target</outputDirectory>
-              		  <warName>ROOT</warName>
-                </configuration>
-            </plugin>
-        </plugins>
-      </build>
+     </dependencies>                 
     </profile>
   </profiles>      
 </project>

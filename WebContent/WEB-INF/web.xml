@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>  
-	<display-name>AstrologyWebService</display-name>
+	<display-name>AstroWebService</display-name>
 	<filter>
 	    <filter-name>SparkFilter</filter-name>
 	    <filter-class>spark.servlet.SparkFilter</filter-class>
