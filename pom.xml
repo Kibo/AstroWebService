@@ -3,18 +3,34 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>cz.kibo.astrology</groupId>
   <artifactId>AstrologyWebService</artifactId>
-  <packaging>jar</packaging>
+  <packaging>${packaging.type}</packaging>  
+  <name>EphemerisWebService</name>
   <version>1.0.0</version>
-  <name>AstrologyWebService</name>
   <url>http://maven.apache.org</url>
   
   <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     		<packaging.type>jar</packaging.type>
+     		<maven.compiler.source>1.8</maven.compiler.source>
+        	<maven.compiler.target>1.8</maven.compiler.target>
+        	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
-    
-  <dependencies>
+   
+   <build>
+    <finalName>webservice</finalName>        
+   		<plugins>  	   		
+   			<!--   parallel test execution -->	  			      	      	     
+            <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-surefire-plugin</artifactId>
+			  <version>2.20</version>
+			  <configuration>
+			    <forkMode>always</forkMode> 
+			  </configuration>
+			</plugin>	      	      	        	     
+  		</plugins>    
+  </build>
+       
+  <dependencies>  		 
 		 <dependency>
 		    <groupId>com.sparkjava</groupId>
 		    <artifactId>spark-core</artifactId>
@@ -24,12 +40,7 @@
 		  <groupId>org.slf4j</groupId>
 		  <artifactId>slf4j-simple</artifactId>
 		  <version>1.7.7</version>
-		</dependency>
-		<dependency>
-		    <groupId>cz.kibo.api</groupId>
-		    <artifactId>astrologyAPI</artifactId>
-		    <version>1.0.0</version>
-		</dependency>		
+		</dependency>			
 		<dependency>
 	    	<groupId>org.json</groupId>
 	    	<artifactId>json</artifactId>
@@ -41,58 +52,115 @@
 	      <artifactId>junit</artifactId>      
 	      <version>4.12</version>
 	      <scope>test</scope>
-	    </dependency>
+	    </dependency>	    
+	    <dependency>
+		    <groupId>cz.kibo.api</groupId>
+			<artifactId>astrologyAPI</artifactId>
+			<version>1.0.0</version>		   
+		</dependency>
   </dependencies>
-
-  <build>
-    <finalName>AstrologyWebService</finalName>        
-    <plugins>  		  		
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-war-plugin</artifactId>
-	        <version>3.1.0</version>	       
-	      </plugin> 	      
-	      <plugin>
+  
+  <repositories>
+    <repository>
+        <id>localMavenRepo</id>
+        <url>file:///${project.basedir}/localMavenRepo</url>
+    </repository>
+  </repositories>
+   
+  <profiles>  
+  	<profile>
+  		<id>jar</id>
+  		
+  		<activation>
+        	<activeByDefault>true</activeByDefault>
+        </activation>
+                   
+     	<build>	        
+	     	<plugins>     	
+		     	<plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-shade-plugin</artifactId>
+		                <version>2.3</version>
+		                <configuration>
+		                    <createDependencyReducedPom>true</createDependencyReducedPom>
+		                    <filters>
+		                        <filter>
+		                            <artifact>*:*</artifact>
+		                            <excludes>
+		                                <exclude>META-INF/*.SF</exclude>
+		                                <exclude>META-INF/*.DSA</exclude>
+		                                <exclude>META-INF/*.RSA</exclude>
+		                            </excludes>
+		                        </filter>
+		                    </filters>
+		                </configuration>
+		                <executions>
+		                    <execution>
+		                        <phase>package</phase>
+		                        <goals>
+		                            <goal>shade</goal>
+		                        </goals>
+		                        <configuration>
+		                            <transformers>
+		                                <transformer
+		                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+		                                    <mainClass>cz.kibo.astrology.service.Bootstrap</mainClass>
+		                                </transformer>
+		                            </transformers>
+		                        </configuration>
+		                    </execution>
+		                </executions>
+		            </plugin>            
+            </plugins>
+       </build>                	    
+  	</profile>
+  
+  	<profile>
+  		<id>war</id>
+  		<properties>
+     		<packaging.type>war</packaging.type>     	
+     	</properties>
+     	
+     	<build>	        
+	     	<plugins>
+	     	<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-war-plugin</artifactId>
+		        <version>3.1.0</version>	       
+		      </plugin>
+		    </plugins> 
+	    </build>	    	    
+  	</profile>
+    	 
+    <profile>       
+     <id>openshift</id>
+     <properties>
+     		<packaging.type>war</packaging.type>     	
+     </properties>
+     
+     <dependencies>
+    	<dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+     </dependencies>
+              
+     <build>        
+        <plugins>
+          <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <createDependencyReducedPom>true</createDependencyReducedPom>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.SF</exclude>
-                                <exclude>META-INF/*.DSA</exclude>
-                                <exclude>META-INF/*.RSA</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>target</outputDirectory>
+              		  <warName>ROOT</warName>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>cz.kibo.astrology.service.Bootstrap</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
-            <plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-surefire-plugin</artifactId>
-			  <configuration>
-			    <forkMode>always</forkMode> 
-			  </configuration>
-			</plugin>	      	      	        	     
-  	</plugins>    
-  </build>  
+        </plugins>
+      </build>
+    </profile>
+  </profiles>      
 </project>

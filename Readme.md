@@ -30,15 +30,18 @@ Tropical, Sidereal
 To see the application in action, run the cz.kibo.astrology.service.Bootstrap program using your IDE.
 
 ### Install
-- mvn clean package
-- mvn package
-
 **jar**
-- java -jar target/AstrologyWebService.jar
-(The application will start the embedded Jetty server at http://0.0.0.0:8080)
+1. mvn clean package -Pjar
+2. java -jar target/webservice.jar
+(The application will start the embedded Jetty server at http://localhost:8080)
 
 **war**
-- Deploy to your Java container (Jetty, Tomcat, GlassFish, ...)
+1. mvn clean package -Pwar
+2. Deploy to your Java container (Jetty, Tomcat, GlassFish, ...)
+
+**openshift**
+1. mvn clean package -Popenshift
+2. Deploy to teh OpenShift_v3 WildFly container
 
 ## License
 GNU public version 3
