@@ -41,7 +41,17 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 
 **openshift**
 1. mvn clean package -Popenshift
-2. Deploy to the OpenShift_v3 WildFly container
+2. Deploy to the OpenShift_v3 [Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_jboss_web_server_for_openshift/)
+
+``` 
+$oc new-build --binary=true \
+--name=webservice \
+--image-stream=jboss-webserver30-tomcat8-openshift
+```
+```
+$ oc start-build webservice --from-dir=./target --follow
+```
+
 
 ## License
 GNU public version 3

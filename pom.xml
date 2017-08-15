@@ -10,6 +10,8 @@
   
   <properties>
      		<packaging.type>jar</packaging.type>
+     		<package.war.name>ROOT</package.war.name>
+     		<package.war.output>target</package.war.output>
      		<maven.compiler.source>1.8</maven.compiler.source>
         	<maven.compiler.target>1.8</maven.compiler.target>
         	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,8 +37,8 @@
                 	<failOnMissingWebXml>true</failOnMissingWebXml>
                 	<webXml>${basedir}/WebContent/WEB-INF/web.xml</webXml>
     				<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
-    				<outputDirectory>target</outputDirectory>
-              		<warName>ROOT</warName>
+    				<outputDirectory>${package.war.output}</outputDirectory>
+              		<warName>${package.war.name}</warName>
             	</configuration>	       
 		      </plugin>				      	      	        	    
   		</plugins>    
@@ -130,24 +132,19 @@
   	<profile>
   		<id>war</id>
   		<properties>
-     		<packaging.type>war</packaging.type>     	
+     		<packaging.type>war</packaging.type>
+     		<package.war.name>ROOT</package.war.name>     	
      	</properties>     		    	   
   	</profile>
     	 
     <profile>       
      <id>openshift</id>
      <properties>
-     		<packaging.type>war</packaging.type>     	
+     		<packaging.type>war</packaging.type>
+     		<package.war.name>webservice</package.war.name> 
+     		<package.war.output>target/deployments</package.war.output>    	
      </properties>
-                   
-     <dependencies>
-    	<dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
-     </dependencies>                 
+                                     
     </profile>
   </profiles>      
 </project>
