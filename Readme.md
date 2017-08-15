@@ -61,6 +61,7 @@ $ oc start-build webservice --from-dir=./target --follow
 ```
 
 **OpenShift v3, early in the year 2017**
+
 After new Buld is done and Application is running, the new Pod is still creating.
 You need to wait until the creation of the Pod is complete. This may take several minutes after the application is deployed. :(
 
