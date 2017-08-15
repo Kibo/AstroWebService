@@ -39,9 +39,9 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 1. mvn clean package -Pwar
 2. Deploy to your Java container (Jetty, Tomcat, GlassFish, ...)
 
-**openshift**
+**OpenShift v3**
 1. mvn clean package -Popenshift
-2. Deploy to the OpenShift_v3 [Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_jboss_web_server_for_openshift/)
+2. Deploy to [Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_jboss_web_server_for_openshift/)
 
 ``` 
 $oc new-build --binary=true \

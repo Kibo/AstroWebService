@@ -8,9 +8,8 @@
   <version>1.0.0</version>
   <url>http://maven.apache.org</url>
   
-  <properties>
-     		<packaging.type>jar</packaging.type>
-     		<package.war.name>ROOT</package.war.name>
+   <properties>
+     		<packaging.type>jar</packaging.type>     		
      		<package.war.output>target</package.war.output>
      		<maven.compiler.source>1.8</maven.compiler.source>
         	<maven.compiler.target>1.8</maven.compiler.target>
@@ -38,7 +37,7 @@
                 	<webXml>${basedir}/WebContent/WEB-INF/web.xml</webXml>
     				<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
     				<outputDirectory>${package.war.output}</outputDirectory>
-              		<warName>${package.war.name}</warName>
+              		<warName>ROOT</warName>
             	</configuration>	       
 		      </plugin>				      	      	        	    
   		</plugins>    
@@ -140,11 +139,10 @@
     <profile>       
      <id>openshift</id>
      <properties>
-     		<packaging.type>war</packaging.type>
-     		<package.war.name>webservice</package.war.name> 
+     		<packaging.type>war</packaging.type>     		
      		<package.war.output>target/deployments</package.war.output>    	
      </properties>
-                                     
+                                             
     </profile>
   </profiles>      
 </project>
