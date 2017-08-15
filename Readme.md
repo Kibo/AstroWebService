@@ -27,7 +27,7 @@ Tropical, Sidereal
 - Maven 3	
 - [astrologyAPI](https://github.com/Kibo/AstroAPI) in file:///${project.basedir}/localMavenRepo
 
-**Deploy astroAPI to Maven local repository**
+**Deploy astroAPI.jar to Maven local repository**
 ``` 
 mvn deploy:deploy-file -DgroupId=cz.kibo.api -DartifactId=astrologyAPI -Dversion=1.0.0 -Durl=file:./localMavenRepo/ -DrepositoryId=localMavenRepo -DupdateReleaseInfo=true -Dfile=astroAPI-1.0.0.jar
 ```
@@ -59,6 +59,13 @@ $oc new-build --binary=true \
 ```
 $ oc start-build webservice --from-dir=./target --follow
 ```
+
+**OpenShift v3, early in the year 2017**
+After new Buld is done and Application is running, the new Pod is still creating.
+You need to wait until the creation of the Pod is complete. This may take several minutes after the application is deployed. :(
+
+### Live demo
+- [service](http://service-swissephemeris.1d35.starter-us-east-1.openshiftapps.com/)
 
 
 ## License
