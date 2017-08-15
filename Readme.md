@@ -27,6 +27,12 @@ Tropical, Sidereal
 - Maven 3	
 - [astrologyAPI](https://github.com/Kibo/AstroAPI) in file:///${project.basedir}/localMavenRepo
 
+**Deploy astroAPI to Maven local repository**
+``` 
+mvn deploy:deploy-file -DgroupId=cz.kibo.api -DartifactId=astrologyAPI -Dversion=1.0.0 -Durl=file:./localMavenRepo/ -DrepositoryId=localMavenRepo -DupdateReleaseInfo=true -Dfile=astroAPI-1.0.0.jar
+```
+
+### Run
 To see the application in action, run the cz.kibo.astrology.service.Bootstrap program using your IDE.
 
 ### Install
@@ -42,6 +48,8 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 **OpenShift v3**
 1. mvn clean package -Popenshift
 2. Deploy to [Red Hat JBoss Web Server](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_jboss_web_server_for_openshift/)
+3. Create [Persisten Volume](https://docs.openshift.com/enterprise/3.0/dev_guide/persistent_volumes.html) for Ephemeris data files.
+4. [Copy ephemeris data](https://docs.openshift.com/enterprise/3.1/dev_guide/copy_files_to_container.html) to mounted folder.
 
 ``` 
 $oc new-build --binary=true \
