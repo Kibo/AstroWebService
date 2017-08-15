@@ -66,7 +66,7 @@ After new Buld is done and Application is running, the new Pod is still creating
 You need to wait until the creation of the Pod is completed. This may take several minutes after the application is deployed. :(
 
 ### Live demo
-- [service](http://service-swissephemeris.1d35.starter-us-east-1.openshiftapps.com/)
+- [service](http://api-swissephemeris.1d35.starter-us-east-1.openshiftapps.com/)
 
 
 ## License
