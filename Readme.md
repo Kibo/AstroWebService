@@ -7,7 +7,7 @@ The AstroWebService is a simple webservice allowing consumers to get planets and
 GNU public version 3
 
 ### Documentation
-- [AstrologyAPI](http://docs.astrologyapi.apiary.io)
+- [API](http://docs.astrologyapi.apiary.io)
 
 ### Prerequisites
 - Java 8
@@ -49,7 +49,7 @@ $ oc start-build webservice --from-dir=./target --follow
 
 **OpenShift v3, early in the year 2017**
 
-After new Buld is done and Application is running, the new Pod is still creating.
+After new Buld is complete and Application is active, the new Pod container is still creating.
 You need to wait until the creation of the Pod is completed. This may take several minutes after the application is deployed. :(
 
 Useful workeraund is to stop aplication before start new build.
