@@ -43,7 +43,7 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 
 **war**
 1. mvn clean package -Pwar
-2. Deploy to your Java container (Jetty, Tomcat, GlassFish, ...)
+2. Deploy to your own Java container (Jetty, Tomcat, GlassFish, ...)
 
 **OpenShift v3**
 1. mvn clean package -Popenshift
