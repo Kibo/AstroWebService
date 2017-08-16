@@ -159,5 +159,17 @@ public class PlanetTest {
 		assertEquals(200, res.getStatus());
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
 		assertEquals("{\"error\":\"Unknown planet name: Suno\"}", res.getBody());					
-	}		
+	}	
+	
+	@Test
+    public void noExistingData(){
+		
+		String reguestJSON = "{\"planets\":[\"Sun\"], \"event\":\"99990710160000\"}";
+		
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT + "/planets", reguestJSON);
+					
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"planets\":{\"Sun\":[0,0]}}", res.getBody());			
+	}
 }

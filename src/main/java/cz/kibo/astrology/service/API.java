@@ -66,6 +66,9 @@ public class API {
         	
         	} catch(java.time.format.DateTimeParseException e) {
         		throw new ValidationException( e.getMessage() );
+        	
+        	} catch(swisseph.SwissephException e) {
+        		throw new ValidationException( e.getMessage() );
         	}       	
         });
 
@@ -106,7 +109,10 @@ public class API {
         	
         	} catch(java.time.format.DateTimeParseException e) {
         		throw new ValidationException( e.getMessage() );
-        	}     	        	        	
+        	
+        	} catch(swisseph.SwissephException e) {
+        		throw new ValidationException( e.getMessage() );
+        	} 	        	        	
         });
         
         // Send transit ephemeris
@@ -154,7 +160,10 @@ public class API {
         	
         	} catch(java.time.format.DateTimeParseException e) {
         		throw new ValidationException( e.getMessage() );
-        	} 
+        	
+        	} catch(swisseph.SwissephException e) {
+        		throw new ValidationException( e.getMessage() );
+        	}
         });
                                
         exception(ValidationException.class, (exception, req, res) -> {

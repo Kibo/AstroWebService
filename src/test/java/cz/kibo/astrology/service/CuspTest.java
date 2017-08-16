@@ -99,5 +99,16 @@ public class CuspTest {
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
 		assertEquals("{\"error\":\"Unknown sidereal mode: Krishnamurto\"}", res.getBody());					
 	}
+	
+	@Test
+    public void nonExistingData(){
+		String reguestJSON = "{\"event\":\"99990710160000\", \"topo\":[1.2,2.3,3.3], \"houses\":\"Placidus\"}";
+		
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/cusps", reguestJSON);
+					
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"cusps\":[265.1076372576438,293.31105525019547,323.19546746699075,355.16075940462395,27.24003890371398,57.202871793688246,85.10763725764377,113.31105525019547,143.19546746699075,175.16075940462397,207.240038903714,237.20287179368825]}", res.getBody());					
+	}
 
 }

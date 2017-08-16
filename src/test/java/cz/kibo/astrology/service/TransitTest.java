@@ -121,5 +121,16 @@ public class TransitTest {
 		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
 		assertEquals("{\"transit\":\"20120816100448\"}", res.getBody());	
 	}
+	
+	@Test
+	public void nonExistingRequest(){
+		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPlanet\":\"Mercury\", \"aspect\":180.0}";
+		
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"error\":\"Calculation failed with return code -1:\n" + "SwissEph file 'sepl_30.se1' not found in the paths of: '/data/ephemeris', \"}", res.getBody());	
+	}
 
 }
