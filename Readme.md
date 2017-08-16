@@ -7,7 +7,7 @@ The AstroWebService is a simple webservice allowing consumers to get planets and
 GNU public version 3
 
 ### Documentation
-- [API](http://docs.astrologyapi.apiary.io)
+- [Ephemeris API](http://docs.astrologyapi.apiary.io)
 
 ### Prerequisites
 - Java 8
