@@ -12,7 +12,7 @@ GNU public version 3
 ### Prerequisites
 - Java 8
 - Maven 3	
-- [astrologyAPI](https://github.com/Kibo/AstroAPI) in file:///${project.basedir}/localMavenRepo
+- [astrologyAPI.jar](https://github.com/Kibo/AstroAPI) in file:///${project.basedir}/localMavenRepo
 
 **Deploy astroAPI.jar to Maven local repository**
 ``` 
