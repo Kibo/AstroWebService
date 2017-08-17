@@ -58,17 +58,11 @@ public class API {
                 return planetEphemeris.toJSON(); 
         		
         	
-        	}catch( org.json.JSONException e) {
-        		throw new ValidationException(e.getMessage());        		
-        		
-        	}catch(java.lang.IllegalArgumentException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(java.time.format.DateTimeParseException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(swisseph.SwissephException e) {
-        		throw new ValidationException( e.getMessage() );
+        	}catch( swisseph.SwissephException | 
+        			java.time.format.DateTimeParseException | 
+        			java.lang.IllegalArgumentException | 
+        			org.json.JSONException e) {
+        		throw new ValidationException(e.getMessage());        	
         	}       	
         });
 
@@ -101,18 +95,12 @@ public class API {
         		res.type("application/json");
         		return cuspEphemeris.toJSON(); 
         		
-        	}catch( org.json.JSONException e) {
-        		throw new ValidationException(e.getMessage());
-        		
-        	}catch(java.lang.IllegalArgumentException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(java.time.format.DateTimeParseException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(swisseph.SwissephException e) {
-        		throw new ValidationException( e.getMessage() );
-        	} 	        	        	
+        	}catch( swisseph.SwissephException | 
+        			java.time.format.DateTimeParseException | 
+        			java.lang.IllegalArgumentException | 
+        			org.json.JSONException e) {
+        		throw new ValidationException(e.getMessage());        	
+        	}       	        	
         });
         
         // Send transit ephemeris
@@ -152,17 +140,11 @@ public class API {
         		res.type("application/json");        		
         		return "{\"transit\":\"" + builder.build().getDate().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + "\"}";
         		
-        	}catch( org.json.JSONException e) {
-        		throw new ValidationException(e.getMessage());
-        		
-        	}catch(java.lang.IllegalArgumentException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(java.time.format.DateTimeParseException e) {
-        		throw new ValidationException( e.getMessage() );
-        	
-        	} catch(swisseph.SwissephException e) {
-        		throw new ValidationException( e.getMessage() );
+        	}catch( swisseph.SwissephException | 
+        			java.time.format.DateTimeParseException | 
+        			java.lang.IllegalArgumentException | 
+        			org.json.JSONException e) {
+        		throw new ValidationException(e.getMessage());        	
         	}
         });
                                
