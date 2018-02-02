@@ -39,12 +39,20 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 4. [Copy ephemeris data](https://docs.openshift.com/enterprise/3.1/dev_guide/copy_files_to_container.html) to mounted folder.
 
 ``` 
-$oc new-build --binary=true \
---name=webservice \
---image-stream=jboss-webserver30-tomcat8-openshift
-```
-```
+$ oc login ( use Copy Login Command from web )
+Create project webservice from web
+$ oc project webservice
+oc new-build --binary=true --name=webservice --image-stream=jboss-webserver30-tomcat8-openshift
 $ oc start-build webservice --from-dir=./target --follow
+$ oc new-app webservice
+$ oc get svc -o name
+$ oc expose svc/webservice
+```
+```
+Create Persisten Volume for Ephemeris data files
+Mount: /data
+
+$ oc rsync /data/ephemeris devpod1234:/data
 ```
 
 **OpenShift v3, early in the year 2017**
@@ -55,4 +63,4 @@ You need to wait until the creation of the Pod is completed. This may take sever
 Useful workeraund is to stop aplication before start new build.
 
 ### Live demo
-- [service](http://api-swissephemeris.1d35.starter-us-east-1.openshiftapps.com/)
+- [service](http://webservice-webservice.7e14.starter-us-west-2.openshiftapps.com/)
