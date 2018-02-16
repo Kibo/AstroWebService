@@ -21,8 +21,10 @@ public class TransitRequest extends ARequest{
 	private Double point;
 	
 	public TransitRequest( String body ) {
-		
+					
 		this.data = new JSONObject( body );
+		
+		System.out.println ( this.data );
 		
 		if( !isValid( this.data ) ) {			
 			return;
@@ -35,7 +37,7 @@ public class TransitRequest extends ARequest{
 		this.planet = data.get("planet").toString();
 		
 		if( data.has("aspect") ) {
-			this.aspect = (Double) data.get("aspect");
+			this.aspect = super.stringToDouble( data.get("aspect").toString() );
 		}
 			
 		if( data.has("toPlanet") ) {
@@ -43,7 +45,7 @@ public class TransitRequest extends ARequest{
 		}
 		
 		if( data.has("toPoint") ) {
-			this.point = (Double) data.get("toPoint");
+			this.point = super.stringToDouble( data.get("toPoint").toString() );
 		}											
 	}
 			

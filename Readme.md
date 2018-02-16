@@ -42,7 +42,7 @@ To see the application in action, run the cz.kibo.astrology.service.Bootstrap pr
 $ oc login ( use Copy Login Command from web )
 Create project webservice from web
 $ oc project webservice
-oc new-build --binary=true --name=webservice --image-stream=jboss-webserver30-tomcat8-openshift
+$ oc new-build --binary=true --name=webservice --image-stream=jboss-webserver30-tomcat8-openshift
 $ oc start-build webservice --from-dir=./target --follow
 $ oc new-app webservice
 $ oc get svc -o name

@@ -41,6 +41,10 @@ public abstract class ARequest {
 		return null;
 	}
 	
+	protected Double stringToDouble( String str ) {
+		return Double.parseDouble( str );
+	}
+	
 	protected boolean commonValidator( JSONObject data, StringBuilder errors ) {
 		
 		boolean hasError = false;
