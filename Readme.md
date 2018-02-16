@@ -55,12 +55,5 @@ Mount: /data
 $ oc rsync /data/ephemeris devpod1234:/data
 ```
 
-**OpenShift v3, early in the year 2017**
-
-After new Buld is complete and Application is active, the new Pod container is still creating.
-You need to wait until the creation of the Pod is completed. This may take several minutes after the application is deployed. :(
-
-Useful workeraund is to stop aplication before start new build.
-
 ### Live demo
 - [service](http://webservice-webservice.7e14.starter-us-west-2.openshiftapps.com/)
