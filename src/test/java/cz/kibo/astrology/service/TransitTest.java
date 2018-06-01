@@ -101,6 +101,28 @@ public class TransitTest {
 	}
 	
 	@Test
+	public void reguestToPoint2(){
+		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 120.0, \"backwards\": false }";
+		
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"transit\":\"20120722100052\"}", res.getBody());	
+	}
+	
+	@Test
+	public void reguestToPointBackwards(){
+		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 180.0, \"backwards\": true }";
+		
+		URLResponse res = new URLResponse("POST", API.API_CONTEXT +"/transit", reguestJSON);
+		
+		assertEquals(200, res.getStatus());
+		assertEquals( "application/json", res.getHeaders().get("Content-Type").get(0));		
+		assertEquals("{\"transit\":\"20110923090437\"}", res.getBody());	
+	}
+	
+	@Test
 	public void reguestToPointTopo(){
 		String reguestJSON = "{\"event\":\"20120710160000\", \"planet\":\"Sun\", \"toPoint\": 120.0, \"topo\":[48.8559107, 16.0542676, 286]}";
 		

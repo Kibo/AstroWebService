@@ -125,6 +125,7 @@ public class API {
         		}
         		        	
         		builder.aspect( transitRequest.getAspect());
+        		builder.backwards( transitRequest.isBackwards() );
         		        		
         		if( transitRequest.getCoordinates() != null) {
     				builder.topo(
@@ -136,7 +137,7 @@ public class API {
         		if( transitRequest.getZodiac() != null) {    				
         			builder.zodiac( transitRequest.getZodiac() );    				
     			}
-        		        		        		        		        		        		      
+        		        		        		        		        		        		        		        		        		        		  
         		res.type("application/json");        		
         		return "{\"transit\":\"" + builder.build().getDate().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + "\"}";
         		

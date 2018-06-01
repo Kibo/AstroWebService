@@ -19,6 +19,7 @@ public class TransitRequest extends ARequest{
 	private String planet;
 	private String planet2;
 	private Double point;
+	private boolean backwards = false;
 	
 	public TransitRequest( String body ) {
 					
@@ -46,7 +47,11 @@ public class TransitRequest extends ARequest{
 		
 		if( data.has("toPoint") ) {
 			this.point = super.stringToDouble( data.get("toPoint").toString() );
-		}											
+		}
+		
+		if( data.has("backwards") ) {
+			this.backwards = Boolean.parseBoolean( data.get("backwards").toString() );			
+		}		
 	}
 			
 	public LocalDateTime getEvent() {
@@ -76,6 +81,10 @@ public class TransitRequest extends ARequest{
 	public Double getToPoint() {
 		return point;
 	}
+		
+	public boolean isBackwards() {
+		return backwards;
+	}
 
 	public boolean hasError() {
 		return this.hasError;
@@ -84,7 +93,7 @@ public class TransitRequest extends ARequest{
 	public String errors() {
 		return errors.toString();
 	}
-
+	
 	private boolean isValid( JSONObject body ) {
 		
 		this.hasError = super.commonValidator(body, this.errors);
