@@ -1,7 +1,7 @@
 # AstroWebService
 The AstroWebService is a simple webservice allowing consumers to get planets and cusps positions. The AstroAPI uses Swiss Ephemeris.
 
-### Version: 1.0.0
+### Version: 2.0.0
 
 ### License
 GNU public version 3
