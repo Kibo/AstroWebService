@@ -21,7 +21,11 @@ public class API {
 
 	public void setupEndpoints() {
 		
-		
+		before((req, res) -> {
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Headers", "*");
+		});
+				
 		// For test
     	get("/status", (req, res) -> {
     		res.type("application/json");          
