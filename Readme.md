@@ -56,4 +56,4 @@ $ oc rsync /data/ephemeris devpod1234:/data
 ```
 
 ### Live demo
-- [service](http://webservice2-webservice.7e14.starter-us-west-2.openshiftapps.com/)
+- [service](http://webservice-webservice.7e14.starter-us-west-2.openshiftapps.com)
