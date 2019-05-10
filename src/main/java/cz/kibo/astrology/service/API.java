@@ -17,6 +17,10 @@ public class API {
 	
 	public API() {     
         setupEndpoints();
+                
+        exception(Exception.class, (exception, request, response) -> {
+            exception.printStackTrace();
+        });        
     }
 
 	public void setupEndpoints() {
@@ -34,7 +38,7 @@ public class API {
     	
         // Send planet ephemeris
         post(API_CONTEXT + "/planets", (req, res) -> {
-        	
+        	synchronized( this ) {
         	try {
         		PlanetRequest planetRequest = new PlanetRequest( req.body() );
         		
@@ -67,12 +71,15 @@ public class API {
         			java.lang.IllegalArgumentException | 
         			org.json.JSONException e) {
         		throw new ValidationException(e.getMessage());        	
-        	}       	
+        	} 
+        
+        	}
         });
 
         // Send cusps ephemeris
         post(API_CONTEXT +"/cusps", (req, res) -> {
         	
+        	synchronized( this ) {
         	try {
         		CuspRequest cuspRequest = new CuspRequest( req.body() );
         		
@@ -104,12 +111,14 @@ public class API {
         			java.lang.IllegalArgumentException | 
         			org.json.JSONException e) {
         		throw new ValidationException(e.getMessage());        	
-        	}       	        	
+        	}
+        	}    	        	
         });
         
         // Send transit ephemeris
         post(API_CONTEXT +"/transit", (req, res) -> {
         	
+        	synchronized( this ) {
         	try {
         		TransitRequest transitRequest = new TransitRequest( req.body() );
         		
@@ -150,6 +159,7 @@ public class API {
         			java.lang.IllegalArgumentException | 
         			org.json.JSONException e) {
         		throw new ValidationException(e.getMessage());        	
+        	}
         	}
         });
                                

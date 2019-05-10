@@ -14,6 +14,11 @@ public class Bootstrap {
         port(PORT);        
         staticFiles.location("/public");
         
+        int maxThreads = 6;
+        int minThreads = 6;
+        int timeOutMillis = 30000;
+        threadPool(maxThreads, minThreads, timeOutMillis);
+        
         new API();
     }
 }
